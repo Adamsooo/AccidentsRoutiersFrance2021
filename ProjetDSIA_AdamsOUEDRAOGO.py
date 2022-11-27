@@ -8,12 +8,19 @@ import plotly.graph_objects as go
 app = Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
 
 #Incorporer le dataset
+##Scrapping des jeux de données
+adresse_web_carateristiques = "https://www.data.gouv.fr/fr/datasets/r/85cfdc0c-23e4-4674-9bcd-79a970d7269b"
+adresse_web_lieux = "https://www.data.gouv.fr/fr/datasets/r/8a4935aa-38cd-43af-bf10-0209d6d17434"
+adresse_web_usagers = "https://www.data.gouv.fr/fr/datasets/r/ba5a1956-7e82-41b7-a602-89d7dd484d7a"
+adresse_web_vehicules = "https://www.data.gouv.fr/fr/datasets/r/0bb5953a-25d8-46f8-8c25-b5c2f5ba905e"
+
 ##Fichier Carasteristiques
-carasteristiquesCSV=pd.read_csv("carcteristiques-2021.csv", sep=";")
+carasteristiquesCSV=pd.read_csv(adresse_web_carateristiques, sep=";")
 carasteristiquesCSV= carasteristiquesCSV.drop(['jour', 'mois', 'an', 'hrmn','dep', 'com', 'agg',
        'int', 'atm', 'col'], axis=1)
 ##Fichier Usagers
-usagersCSV=pd.read_csv("usagers-2021.csv", sep=';').drop(['place',
+usagersCSV=pd.read_csv("adresse_web_usagers", sep=';')
+usagersCSV=usagersCSV.drop(['place',
         'trajet', 'secu1', 'secu2', 'secu3', 'locp', 'actp',      
         'etatp'], axis = 1)
 usagersCSV=usagersCSV.dropna(axis=0)
@@ -64,8 +71,7 @@ histo_fig1 = px.bar(
 histo_fig2 = px.bar(
     x=list(usagersCSV['sexe'].value_counts().keys()),
     y=usagersCSV['sexe'].value_counts().values,
-    title="Nombres d'accidents selon les hommes et les femmes",
-    color=usagersCSV['sexe']>0
+    title="Nombres d'accidents selon les hommes et les femmes"
 )
 
 #Le Dash à afficher
