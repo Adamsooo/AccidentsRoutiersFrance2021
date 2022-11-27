@@ -19,7 +19,7 @@ carasteristiquesCSV=pd.read_csv(adresse_web_carateristiques, sep=";")
 carasteristiquesCSV= carasteristiquesCSV.drop(['jour', 'mois', 'an', 'hrmn','dep', 'com', 'agg',
        'int', 'atm', 'col'], axis=1)
 ##Fichier Usagers
-usagersCSV=pd.read_csv("adresse_web_usagers", sep=';')
+usagersCSV=pd.read_csv(adresse_web_usagers, sep=';')
 usagersCSV=usagersCSV.drop(['place',
         'trajet', 'secu1', 'secu2', 'secu3', 'locp', 'actp',      
         'etatp'], axis = 1)
